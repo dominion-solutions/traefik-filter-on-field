@@ -15,8 +15,9 @@ summary: Filter requests based on a specific parameter value.
 # and Plugins Catalog will try to execute the plugin with the data you provide as part of its startup validity tests.
 testData:
   # The name of the field to filter on.
-  field: "q"
+  fieldName: "aParameterField"
   # The value of the field to filter on.
-  disallowedValue:
-    - "admin"
-    - "login"
+  disallowedContent:
+    - "invalidValue"
+    - "anotherInvalidValue"
+  responseMessage: "Nope!"

@@ -1,0 +1,24 @@
+image: golang:1.21.4
+stages:
+  - test
+  - lint
+
+include:
+- template: Security/SAST.gitlab-ci.yml
+- template: Security/Secret-Detection.gitlab-ci.yml
+- template: Security/Dependency-Scanning.gitlab-ci.yml
+- template: Code-Quality/Code-Quality.gitlab-ci.yml
+- template: Code-Quality/Performance.gitlab-ci.yml
+- template: Code-Quality/Code-Intelligence.gitlab-ci.yml
+- template: Code-Quality/Review-Apps.gitlab-ci.yml
+
+test:
+  stage: test
+  script:
+    - go test ./...
+
+lint:
+  stage: lint
+  script:
+    - go fmt ./...
+    - go vet ./...
