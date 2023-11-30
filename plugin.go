@@ -2,6 +2,7 @@ package filter_on_field
 
 import (
 	"net/http"
+	"regexp"
 )
 
 type Error struct {
@@ -51,14 +52,14 @@ func New(ctx *Config, next http.Handler, name string) (http.Handler, error) {
  * @param req The request
  */
 func (f *FilterOnField) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
-	parameter, err := req.getParameter(f.config.fieldName)
-	if err != nil {
-		rw.WriteHeader(http.StatusBadRequest)
-		rw.Write([]byte(err.Error()))
-		return
+	parameter := req.FormValue(f.config.fieldName)
+	if parameter == "" {
+		f.next.ServeHTTP(rw, req)
 	}
 	for _, pattern := range f.config.disallowedContent {
-		if pattern.MatchString(parameter) {
+		regex := regexp.MustCompile(pattern)
+
+		if regex.MatchString(parameter) {
 			rw.WriteHeader(http.StatusBadRequest)
 			rw.Write([]byte(f.config.responseMessage))
 			return
