@@ -1,0 +1,22 @@
+# The name of your plugin as displayed in the Plugins Catalog web UI.
+displayName: Filter On Field
+
+# For now, `middleware` is the only type available.
+type: middleware
+
+# The import path of your plugin.
+import: gitlab.com/dominion-solutions-open-source/traefik-filter-on-field
+
+# A brief description of what your plugin is doing.
+summary: Filter requests based on a specific parameter value.
+
+# Configuration data for your plugin.
+# This is mandatory,
+# and Plugins Catalog will try to execute the plugin with the data you provide as part of its startup validity tests.
+testData:
+  # The name of the field to filter on.
+  field: "q"
+  # The value of the field to filter on.
+  disallowedValue:
+    - "admin"
+    - "login"
