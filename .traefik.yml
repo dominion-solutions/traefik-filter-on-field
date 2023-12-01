@@ -5,10 +5,10 @@ displayName: Filter On Field
 type: middleware
 
 # The import path of your plugin.
-import: gitlab.com/dominion-solutions-open-source/traefik-filter-on-field
+import: github.com/dominion-solutions/traefik-filter-on-field
 
 # A brief description of what your plugin is doing.
-summary: Filter requests based on a specific parameter value.
+summary: Filter requests based on a specific parameter's value in a blacklist.
 
 # Configuration data for your plugin.
 # This is mandatory,
