@@ -1,6 +1,9 @@
 # Filter on Field
 Allows for filtering Traefik Requests based on parameters that are passed in to the request matching a particular regular expression.
 
+![Pipeline Status](https://gitlab.com/dominion-solutions-open-source/traefik-filter-on-field/badges/main/pipeline.svg)
+![Latest Release](https://gitlab.com/dominion-solutions-open-source/traefik-filter-on-field/-/badges/release.svg)
+
 ## Configuration Examples
 ### Docker
 ```yml
