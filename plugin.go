@@ -1,7 +1,7 @@
 // This is the filter_on_field plugin.  It contains the code that implements the
 // Traefik interfaces, and filters requests based on the parameters passed in the configuration, allowing all values
 // except those that match the disallowed content.
-package filter_on_field
+package traefik_filter_on_field
 
 import (
 	"net/http"

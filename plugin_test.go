@@ -1,4 +1,4 @@
-package filter_on_field
+package traefik_filter_on_field
 
 import (
 	"net/http"
