@@ -4,6 +4,7 @@
 package traefik_filter_on_field
 
 import (
+	"context"
 	"net/http"
 	"regexp"
 )
@@ -38,20 +39,19 @@ type FilterOnField struct {
 	name   string
 }
 
-func CreateConfig(fieldName string, responseMessage string, disallowedContent []string) *Config {
+// Create a default version of the configuration.
+func CreateConfig() *Config {
 	return &Config{
-		fieldName:         fieldName,
-		responseMessage:   responseMessage,
-		disallowedContent: disallowedContent,
+		responseMessage: "Disallowed content",
 	}
 }
 
 // Create a new instance of the filter.  This is called by Traefik when the plugin is loaded and returns a new instance of the filter.
 // It takes a configuration struct, the next handler in the chain, and the name of the filter.
-func New(ctx *Config, next http.Handler, name string) (http.Handler, error) {
+func New(ctx context.Context, next http.Handler, config *Config, name string) (http.Handler, error) {
 	return &FilterOnField{
 		next:   next,
-		config: ctx,
+		config: config,
 		name:   name,
 	}, nil
 }
