@@ -2,15 +2,15 @@
 Allows for filtering Traefik Requests based on parameters that are passed in to the request matching a particular regular expression.
 
 ![Pipeline Status](https://gitlab.com/dominion-solutions-open-source/traefik-filter-on-field/badges/main/pipeline.svg)
-![Latest Release](https://gitlab.com/dominion-solutions-open-source/traefik-filter-on-field/-/badges/release.svg)
+![Latest Release]()
 
 ## Configuration Examples
 ### Docker
 ```yml
 label:
-- traefik.http.middlewares.<middlewareName>.filter-on-field.fieldName='<fieldName>'
-- traefik.http.middlewares.<middlewareName>.filter-on-field.disallowedContent='<disallowedRegex1>,<disallowedRegex2>'
-- traefik.http.middlewares.<middlewareName>.filter-on-field.responseMessage="<Response Message>"
+- traefik.http.middlewares.<middlewareName>.traefikFilterOnField.fieldName='<fieldName>'
+- traefik.http.middlewares.<middlewareName>.traefikFilterOnField.disallowedContent='<disallowedRegex1>,<disallowedRegex2>'
+- traefik.http.middlewares.<middlewareName>.traefikFilterOnField.responseMessage="<Response Message>"
 ```
 
 ### File (YAML)
@@ -23,12 +23,13 @@ http:
       - <middlewareName>
   middlewares:
     <middlewareName>:
-      filter-on-field:
-        fieldName: <fieldName>
-        disallowedContent:
-        - <disallowedRegex1>
-        - <disallowedRegex2>
-        responseMessage: <Response Message>
+      plugin:
+        traefikFilterOnField:
+          fieldName: <fieldName>
+          disallowedContent:
+            - <disallowedRegex1>
+            - <disallowedRegex2>
+          responseMessage: <Response Message>
 ```
 
 ## Parameter Precedence
@@ -42,7 +43,8 @@ Parameters are approached in the following order:
 ```yml
 middleware:
   filter-all-requests-with-disallowed-field:
-    filter-on-field:
+    plugin:
+      traefikFilterOnField:
         fieldName: disallowedField
         disallowedContent:
         # Regex that matches everything...
